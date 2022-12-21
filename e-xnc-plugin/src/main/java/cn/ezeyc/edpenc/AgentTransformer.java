@@ -28,9 +28,7 @@ public class AgentTransformer implements ClassFileTransformer {
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
                             ProtectionDomain domain, byte[] classBuffer) {
-        if(className.startsWith(Const.PACKAGES)){
-            System.out.println("======"+className);
-        }
+
         if (className == null || domain == null || loader == null) {
             return null;
         }
@@ -45,6 +43,7 @@ public class AgentTransformer implements ClassFileTransformer {
             byte[] bytes = JarDecryptor.getInstance().doDecrypt(projectPath, className, this.pwd);
             //CAFEBABE,表示解密成功
             if (bytes != null && bytes[0] == -54 && bytes[1] == -2 && bytes[2] == -70 && bytes[3] == -66) {
+                System.out.println(className+"--------success");
                 return bytes;
             }
         }
