@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cn.ezeyc</groupId>
+    <artifactId>e-base</artifactId>
+    <version>1.0</version>
+    <name>e-base</name>
+    <description>e-base</description>
+    <packaging>pom</packaging>
+    <properties>
+        <java.version>8</java.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!--core-->
+        <solon.version>1.11.6</solon.version>
+        <mysql.version>8.0.30</mysql.version>
+        <lombok.version>1.18.24</lombok.version>
+        <pdf.version>2.0.26</pdf.version>
+        <sa.redis.version>1.4.4</sa.redis.version>
+        <poi.version>4.1.2</poi.version>
+        <converter.version>2.0.2</converter.version>
+        <aspose.cell.version>22.6</aspose.cell.version>
+        <aspose.word.version>22.5</aspose.word.version>
+        <jdk15on.version>1.60</jdk15on.version>
+        <mail.version>2.0.1</mail.version>
+        <sso.version>1.32.0</sso.version>
+        <okhttps.version>3.5.3</okhttps.version>
+        <torna.version>1.0.15</torna.version>
+        <qdox.version>2.0.3</qdox.version>
+        <io.version>2.11.0</io.version>
+        <hikari.version>4.0.3</hikari.version>
+
+        <!--plug-->
+        <alipay.version>4.31.64.ALL</alipay.version>
+        <tx-msg.version>3.1.356</tx-msg.version>
+        <codec.version>1.15</codec.version>
+    </properties>
+
+    <modules>
+        <module>e-core</module>
+        <module>e-plugin</module>
+        <module>e-xnc-plugin</module>
+    </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.noear</groupId>
+                <artifactId>solon-parent</artifactId>
+                <version>${solon.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <repositories>
+        <repository>
+            <id>AsposeJavaAPI</id>
+            <name>Aspose Java API</name>
+            <url>https://releases.aspose.com/java/repo/</url>
+        </repository>
+        <repository>
+            <id>tencent</id>
+            <name>tencent maven</name>
+            <url>https://mirrors.cloud.tencent.com/nexus/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>repo1</id>
+            <name>repo1 maven</name>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>ck</id>
+            <url>https://ck.ezeyc.cn/repository/mvn/</url>
+        </repository>
+    </repositories>
+    <!--  需要发布二方包 则打开下列的配置-->
+    <distributionManagement>
+        <repository>
+            <id>ck</id>
+            <url>https://ck.ezeyc.cn/repository/mvn/</url>
+        </repository>
+    </distributionManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>8</source>
+                    <target>8</target>
+                    <skip>true</skip>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
