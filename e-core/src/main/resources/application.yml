@@ -62,5 +62,15 @@ sa-token:
 #配置加密
 solon.vault:
   password: "wangze_991567775"
+#分布式事件
+solon.cloud.jedis:
+  event:
+    server: "localhost:6380"
+    db: 5 #默认为 0，可不配置
+    maxTotaol: 200 #默认为 200，可不配
+  lock:
+    server: "localhost:6380"
+    db: 6 #默认为 0，可不配置
+    maxTotaol: 200 #默认为 200，可不配
 #健康监测
 solon.health.detector: "*"

@@ -34,7 +34,6 @@ import org.noear.solon.annotation.Configuration;
 import org.noear.solon.annotation.Inject;
 import org.noear.solon.cache.jedis.RedisCacheService;
 import org.noear.solon.cloud.CloudProps;
-import org.noear.solon.cloud.extend.opentracing.OpentracingProps;
 import org.noear.solon.data.cache.CacheService;
 import org.noear.solon.vault.annotation.VaultInject;
 
@@ -123,31 +122,32 @@ public class Config {
      * @return 返回
      * @throws TTransportException  异常
      */
-    @Bean
-    public JaegerTracer tracer() throws TTransportException {
-        CloudProps cloudProps = OpentracingProps.instance;
+//    @Bean
+//    public JaegerTracer tracer() throws TTransportException {
+//        CloudProps cloudProps = OpentracingProps.instance;
 
         //为了可自由配置，这行代码重要
         //为了可自由配置，这行代码重要
-        if(cloudProps.getTraceEnable() == false
-                || Utils.isEmpty(cloudProps.getServer())){
-            return null;
-        }
+//        if(cloudProps.getTraceEnable() == false
+//                || Utils.isEmpty(cloudProps.getServer())){
+//            return null;
+//        }
+//
+//        URI serverUri = URI.create(cloudProps.getServer());
+//        Sender sender = new UdpSender(serverUri.getHost(), serverUri.getPort(), 0);
+//
+//        final CompositeReporter compositeReporter = new CompositeReporter(
+//                new RemoteReporter.Builder().withSender(sender).build(),
+//                new LoggingReporter()
+//        );
+//
+//        final Metrics metrics = new Metrics(new NoopMetricsFactory());
 
-        URI serverUri = URI.create(cloudProps.getServer());
-        Sender sender = new UdpSender(serverUri.getHost(), serverUri.getPort(), 0);
+//        return new JaegerTracer.Builder(Solon.cfg().appName())
+//                .withReporter(compositeReporter)
+//                .withMetrics(metrics)
+//                .withExpandExceptionLogs()
+//
 
-        final CompositeReporter compositeReporter = new CompositeReporter(
-                new RemoteReporter.Builder().withSender(sender).build(),
-                new LoggingReporter()
-        );
-
-        final Metrics metrics = new Metrics(new NoopMetricsFactory());
-
-        return new JaegerTracer.Builder(Solon.cfg().appName())
-                .withReporter(compositeReporter)
-                .withMetrics(metrics)
-                .withExpandExceptionLogs()
-                .withSampler(new ConstSampler(true)).build();
-    }
+//    }
 }

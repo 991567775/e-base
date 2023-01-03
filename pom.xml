@@ -15,7 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--core-->
-        <solon.version>1.11.6</solon.version>
+        <solon.version>1.12.0</solon.version>
         <mysql.version>8.0.30</mysql.version>
         <lombok.version>1.18.24</lombok.version>
         <pdf.version>2.0.26</pdf.version>
