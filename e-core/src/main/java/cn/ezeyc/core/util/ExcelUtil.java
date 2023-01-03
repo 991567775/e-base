@@ -222,7 +222,7 @@ public class ExcelUtil {
                                 if(vals!=null&&vals.size()>0){
                                     for(Object j:vals){
                                         if(j!=null && j instanceof JSONObject){
-                                            if(((JSONObject) j).get("val").equals(f.get(o).toString())){
+                                            if(((JSONObject) j).get("val")!=null&&((JSONObject) j).get("val").equals(f.get(o))){
                                                 cell.setCellValue(((JSONObject) j).get("label").toString());
                                                 break;
                                             }
@@ -235,7 +235,7 @@ public class ExcelUtil {
                             if(split.length>0){
                                 for(String s: split){
                                     String[] v = s.split("=");
-                                    if(v.length>0&&v[0].equals(f.get(o).toString())){
+                                    if(v.length>0&&v[0].equals(f.get(o))){
                                         cell.setCellValue(v[1]);
                                         break;
                                     }
