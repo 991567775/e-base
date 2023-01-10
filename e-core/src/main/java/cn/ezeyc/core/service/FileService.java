@@ -49,7 +49,7 @@ public class FileService {
             file.transferTo(new File(newFile.getPath()+ Const.slanting +name));
         }
         //转换为pdf预览
-        if(view){
+        if(view!=null&&view){
             if(name.endsWith(Const.doc)||name.endsWith(Const.DOC)
                     ||name.endsWith(Const.docx)||name.endsWith(Const.DOCX)
             ){
