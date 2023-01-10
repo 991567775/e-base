@@ -1,5 +1,7 @@
 package cn.ezeyc.core.util;
 
+import cn.ezeyc.core.config.Const;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -83,7 +85,12 @@ public class Util {
      * @return 返回
      */
     public static String getFileType(String file) {
-        return file.substring(file.indexOf("."),file.length());
+        if(file.contains(Const.dot)){
+            return file.substring(file.indexOf(Const.dot),file.length());
+        }else{
+            return "";
+        }
+
     }
 
 }

@@ -33,31 +33,33 @@ public class FileService {
     @Inject(value = "${uploadType}",required = false)
     private String type= Const.qiniu;
 
-    public String upload(UploadedFile file) throws IOException {
+    public String upload(UploadedFile file,Boolean view) throws IOException {
+        String date= LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+        String name = CloudClient.id().generate()+Util.getFileType(file.name);
         if(type.equals(Const.qiniu)){
-            String date= LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-
-            String name =date+ Const.slanting+ CloudClient.id().generate();
-            //后缀
-            if(file.name.contains(Const.dot)){
-                name+=Util.getFileType(file.name);
-            }
             Result put = CloudClient.file().put(name, new Media(file.content));
-            // 把它转为本地文件
-            return name;
+
         } else if (type.equals(Const.local)) {
-            //设置日期目录
-            String date= LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-            String name = CloudClient.id().generate()+Util.getFileType(file.name);
+            //判断日期目录是否存在
             File newFile = new File(config.getUploadPath() + date);
             if (!newFile.exists()) {
                 newFile.mkdirs();
             }
             // 把它转为本地文件
             file.transferTo(new File(newFile.getPath()+ Const.slanting +name));
-            return date+ Const.slanting +name;
         }
-        return  "上传类型未确定";
+        //转换为pdf预览
+        if(view){
+            if(name.endsWith(Const.doc)||name.endsWith(Const.DOC)
+                    ||name.endsWith(Const.docx)||name.endsWith(Const.DOCX)
+            ){
+                OfficeTo.DocTo(new File(config.getUploadPath()+date+ Const.slanting +name),OfficeType.PDF);
+            }else if(name.endsWith(Const.xls)||name.endsWith(Const.XLS)
+                    ||name.endsWith(Const.xlsx)||name.endsWith(Const.XLSX)){
+                OfficeTo.xlxTo(new File(config.getUploadPath()+date+ Const.slanting +name),OfficeType.PDF);
+            }
+        }
+        return date+ Const.slanting +name;
     }
 
     public void down(Context ctx, String path) {
@@ -79,7 +81,7 @@ public class FileService {
     }
 
     @Get
-    public void view(Context ctx, String path, String officeType) {
+    public void view(Context ctx, String path, String officeType,boolean local) {
         InputStream fis=null;
         try {
             if(path.endsWith(Const.PDF)||path.endsWith(Const.pdf)){
@@ -108,10 +110,18 @@ public class FileService {
                         fis=new FileInputStream(new File(config.getUploadPath(), path));
                     }
                     if(officeType!=null&&"html".equals(officeType)){
-                        OfficeTo.DocTo(fis,OfficeType.HTML);
+                        if(local){
+                            OfficeTo.DocTo(new File(path),OfficeType.HTML);
+                        }else {
+                            OfficeTo.DocTo(fis,OfficeType.HTML);
+                        }
                         ctx.flush();
                     }else{
-                        OfficeTo.DocTo(fis, OfficeType.PDF);
+                        if(local){
+                            OfficeTo.DocTo(new File(path),OfficeType.PDF);
+                        }else {
+                            OfficeTo.DocTo(fis,OfficeType.PDF);
+                        }
                         ctx.flush();
                     }
                 }else{
@@ -121,9 +131,17 @@ public class FileService {
                         fis=new FileInputStream(new File(config.getUploadPath(), path));
                     }
                     if(officeType!=null&&"html".equals(officeType)){
-                        OfficeTo.xlxTo(fis,OfficeType.HTML);
+                        if(local){
+                            OfficeTo.xlxTo(new File(path),OfficeType.HTML);
+                        }else {
+                            OfficeTo.xlxTo(fis,OfficeType.HTML);
+                        }
                     }else{
-                        OfficeTo.xlxTo(fis, OfficeType.PDF);
+                        if(local){
+                            OfficeTo.xlxTo(new File(path),OfficeType.PDF);
+                        }else {
+                            OfficeTo.xlxTo(fis,OfficeType.PDF);
+                        }
                     }
                 }
             }else{
