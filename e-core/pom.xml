@@ -311,7 +311,7 @@
             <plugin>
                 <groupId>cn.ezeyc</groupId>
                 <artifactId>e-xnc-plugin</artifactId>
-                <version>1.0</version>
+                <version>1.2</version>
                 <executions>
                     <execution>
                         <!-- 指定和目标关联的生命周期阶段 -->

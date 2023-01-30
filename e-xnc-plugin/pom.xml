@@ -6,7 +6,7 @@
     <parent>
         <groupId>cn.ezeyc</groupId>
         <artifactId>e-base</artifactId>
-        <version>1.0</version>
+        <version>1.2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>cn.ezeyc</groupId>
@@ -14,7 +14,7 @@
     <name>e-xnc-plugin</name>
 
     <packaging>maven-plugin</packaging>
-    <version>1.0</version>
+    <version>1.2</version>
     <dependencies>
         <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>

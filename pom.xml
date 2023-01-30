@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.ezeyc</groupId>
     <artifactId>e-base</artifactId>
-    <version>1.0</version>
+    <version>1.2</version>
     <name>e-base</name>
     <description>e-base</description>
     <packaging>pom</packaging>
@@ -15,7 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--core-->
-        <solon.version>1.12.1</solon.version>
+        <solon.version>1.12.4</solon.version>
         <mysql.version>8.0.30</mysql.version>
         <lombok.version>1.18.24</lombok.version>
         <pdf.version>2.0.26</pdf.version>
