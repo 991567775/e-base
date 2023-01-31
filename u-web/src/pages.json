@@ -1,0 +1,213 @@
+{
+	"pages": [
+		{
+			"path": "pages/admin/login/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			},
+			"login": false
+		},
+
+		{
+			"path": "pages/admin/sso/index",
+			"style": {
+				"navigationBarTitleText": "demo"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/admin/sso/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/admin/base/kzt",
+			"style": {
+				"navigationBarTitleText": "控制台"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/admin/login/pwd",
+			"style": {
+				"navigationBarTitleText": "修改密码"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/admin/login/register",
+			"style": {
+				"navigationBarTitleText": "注册"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/admin/base/base",
+			"style": {
+				"navigationBarTitleText": "建湖县水资源管理平台"
+			}
+		},
+		{
+			"path": "pages/system/sysCompany/list",
+			"style": {
+				"navigationBarTitleText": "组织设置"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysConfig/list",
+			"style": {
+				"navigationBarTitleText": "参数设置"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysConfig/edit",
+			"style": {
+				"navigationBarTitleText": "参数编辑"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysDemo/list",
+			"style": {
+				"navigationBarTitleText": "开发案例"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysDemo/edit",
+			"style": {
+				"navigationBarTitleText": "开发案例编辑"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysDepart/list",
+			"style": {
+				"navigationBarTitleText": "部门设置"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysDirect/list",
+			"style": {
+				"navigationBarTitleText": "字典设置"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysDirect/edit",
+			"style": {
+				"navigationBarTitleText": "字典编辑"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysDirectValue/list",
+			"style": {
+				"navigationBarTitleText": "字典值设置"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysDirectValue/edit",
+			"style": {
+				"navigationBarTitleText": "字典值编辑"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysGroup/list",
+			"style": {
+				"navigationBarTitleText": "用户组设置"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysGroup/edit",
+			"style": {
+				"navigationBarTitleText": "用户组编辑"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysMenu/list",
+			"style": {
+				"navigationBarTitleText": "菜单设置"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysRole/list",
+			"style": {
+				"navigationBarTitleText": "角色设置"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysRole/edit",
+			"style": {
+				"navigationBarTitleText": "角色编辑"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysStation/list",
+			"style": {
+				"navigationBarTitleText": "岗位设置"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysUser/list",
+			"style": {
+				"navigationBarTitleText": "用户设置"
+			},
+			"login": false
+		},
+		{
+			"path": "pages/system/sysUser/edit",
+			"style": {
+				"navigationBarTitleText": "用户编辑"
+			},
+			"login": false
+		}
+	],
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^u-(.*)": "/node_modules/@wzabcd/u-ui/components/u-$1/u-$1.vue"
+		}
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "建湖县水资源管理平台",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF",
+		"h5": {
+			"titleNView": false
+		},
+		"app-plus": {
+			"titleNView": true,
+			"background": "#FFFFFF"
+		},
+		"mp-alipay": {
+			"titleNView": true,
+			"background": "#fff"
+		},
+		"mp-weixin": {}
+	},
+	"condition": {
+		"current": 0,
+		"list": [
+			{
+				"name": "",
+				"path": "",
+				"query": ""
+			}
+		]
+	}
+}
