@@ -1,0 +1,47 @@
+{
+	"pages": [
+
+		{
+			"path": "pages/admin/base/kzt",
+			"style": {
+				"navigationBarTitleText": "demo"
+			},
+			"login": false
+		}
+
+	],
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^u-(.*)": "/node_modules/@wzabcd/u-ui/components/u-$1/u-$1.vue"
+		}
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "管理平台",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF",
+		"h5": {
+			"titleNView": false
+		},
+		"app-plus": {
+			"titleNView": true,
+			"background": "#FFFFFF"
+		},
+		"mp-alipay": {
+			"titleNView": true,
+			"background": "#fff"
+		},
+		"mp-weixin": {}
+	},
+	"condition": {
+		"current": 0,
+		"list": [
+			{
+				"name": "",
+				"path": "",
+				"query": ""
+			}
+		]
+	}
+}

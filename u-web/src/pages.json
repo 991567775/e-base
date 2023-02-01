@@ -46,7 +46,7 @@
 		{
 			"path": "pages/admin/base/base",
 			"style": {
-				"navigationBarTitleText": "建湖县水资源管理平台"
+				"navigationBarTitleText": "管理平台"
 			}
 		},
 		{
@@ -184,7 +184,7 @@
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "建湖县水资源管理平台",
+		"navigationBarTitleText": "管理平台",
 		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#FFFFFF",
 		"h5": {

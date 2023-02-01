@@ -1,0 +1,28 @@
+.data-list{
+  background-color: #FFFFFF;
+  margin-top: 20rpx;
+}
+.data-edit{
+  padding: 100rpx;
+  background-color:#fff;
+}
+.u-table-btn{
+  display: flex;
+  padding: 10rpx;
+}
+.u-table-btn  :deep(.u-btn){
+  margin: 10rpx;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+:deep(.u-page){
+  margin-top: 20rpx;
+  margin-right: 20rpx;
+  padding-bottom: 20rpx;
+}
+:deep(.u-table){
+  padding: 0 20rpx;
+  width: unset!important;
+}
