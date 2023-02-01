@@ -3,24 +3,7 @@
  * 2021-10-28
  * 常用工具类
  * */
-import { toDirect } from '@/js/toDirect.js';
 const utils = {
-	/**
-	 *获取取水户
-	 */
-	getUserList:(store)=>{
-		if(store.getters.userList.length==0){
-			return  toDirect("water","/business/listAll",{},{val:"id",label:"name"});
-		}else{
-			return store.getters.userList;
-		}
-	},
-	/**
-	 * 设置取水户
-	 */
-	setUserList:(store)=>{
-		store.commit("set_user_list",toDirect("water","/business/listAll",{},{val:"id",label:"name"}))
-	},
 	/**
 	 * 获取公网ip
 	 */

@@ -1,10 +1,7 @@
 //true 微服务; false单独服务;
 let microService = true;
 //后端访问地址
-//开发
 let url = process.env.NODE_ENV == 'development' ? 'http://127.0.0.1:1993' : 'https://test.tonhai.cn/api'
-//
-// let url=process.env.NODE_ENV == 'development'?'https://dc.tonhai.cn':'https://www.ezeyc.net'
 //默认服务名【如需请求其他模块在请求中添加service值】
 let service = microService ? "/water" : "";
 //基础配置
@@ -17,7 +14,7 @@ let base = {
         path: "/pages/admin/base/kzt",
         close: false
     },
-    appBgName: '建湖县水资源管理平台',
+    appBgName: '平台',
     appBgBottom: '底部',
     wxMini: {
         use: true,

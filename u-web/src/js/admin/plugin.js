@@ -1,4 +1,4 @@
- import {util} from './edp-util'
+ import {util} from '@wzabcd/u-plugin'
  import store from "@/pina";
 
  /**

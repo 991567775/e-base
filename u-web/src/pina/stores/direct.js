@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import {util} from "../../js/plugin/edp-util";
+import {util} from "@wzabcd/u-plugin";
 export const direct = defineStore('direct', {
     state: () => {
         return {

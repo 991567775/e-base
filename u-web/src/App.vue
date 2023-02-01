@@ -5,6 +5,5 @@ import {config} from "@/config";
 
 <style lang="scss">
 @import '@wzabcd/u-ui/dist/style.css';
-@import '@/static/jhszy/font.css';
 @import "uni.scss";
 </style>

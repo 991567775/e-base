@@ -142,10 +142,10 @@
         "uniStatistics" : {
             "enable" : false
         },
-        "title" : "建湖水资源平台",
+        "title" : "平台",
         "router" : {
             "mode" : "history",
-            "base" : "/h5/"
+            "base" : "/"
         },
         "optimization" : {
             "treeShaking" : {
