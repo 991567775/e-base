@@ -6,12 +6,12 @@
     <parent>
         <groupId>cn.ezeyc</groupId>
         <artifactId>e-base</artifactId>
-        <version>1.2</version>
+        <version>1.3</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>cn.ezeyc</groupId>
     <artifactId>e-core</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
     <name>e-core</name>
     <description>e-core</description>
     <packaging>jar</packaging>
@@ -311,7 +311,7 @@
             <plugin>
                 <groupId>cn.ezeyc</groupId>
                 <artifactId>e-xnc-plugin</artifactId>
-                <version>1.2</version>
+                <version>1.3</version>
                 <executions>
                     <execution>
                         <!-- 指定和目标关联的生命周期阶段 -->

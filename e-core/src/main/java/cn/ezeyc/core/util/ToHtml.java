@@ -41,7 +41,7 @@ public class ToHtml {
     public File convert(UploadedFile file) {
         //获得文件的名字
         //获得文件的扩展名
-        String suffix =  file.name.substring( file.name.lastIndexOf("."));
+        String suffix =  file.getName().substring( file.getName().lastIndexOf("."));
         String newName = UUID.randomUUID().toString();
         // TODO 需要保存在一个新的位置
         // File =new File 表示目录的一个抽象,可以进一步用exists()和isDirectory()方法判断。
@@ -52,7 +52,7 @@ public class ToHtml {
             convFile.createNewFile();
             //FileOutputStream 是输出流 将文件输出到磁盘或者数据库中
             fos = new FileOutputStream(convFile);
-            fos.write(ClassUtil.readStream(file.content));
+            fos.write(ClassUtil.readStream(file.getContent()));
         } catch (IOException ex) {
             log.error("上传文件出错！", ex);
             return null;
@@ -67,9 +67,9 @@ public class ToHtml {
             parentDirectory = parentDirectory + "\\";
         }
 
-        if (file.name.endsWith(".docx")) {
+        if (file.getName().endsWith(".docx")) {
             return docxConvert(parentDirectory, convFile, newName);
-        } else if (file.name.endsWith(".doc")) {
+        } else if (file.getName().endsWith(".doc")) {
             return docConvert(parentDirectory, convFile, newName);
         } else {
             log.error("不支持的文件格式！");

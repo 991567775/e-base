@@ -13,6 +13,7 @@ import org.noear.solon.core.util.PathUtil;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -111,93 +112,95 @@ public class HandlerLoader extends HandlerAide {
 
         slots.add(bMapping, v0, handler);
     }
-
+    protected Method[] findMethods(Class<?> clz){
+        return clz.getDeclaredMethods();
+    }
 
     /**
      * 加载 Action 处理
      */
     protected void loadActionDo(HandlerSlots slots, boolean all) {
-        String mPath;
+        String m_path;
+
         if (bPath == null) {
             bPath = "";
         }
-        Set<MethodType> bMethod = new HashSet<>();
 
-        loadControllerAide(bMethod);
+        Set<MethodType> b_method = new HashSet<>();
 
-        Set<MethodType> mMethod;
-        Mapping mMap;
-        int mIndex = 0;
+        loadControllerAide(b_method);
+
+        Set<MethodType> m_method;
+        Mapping m_map;
+
 
         //只支持 public 函数为 Action
-        for (Method method : bw.clz().getDeclaredMethods()) {
-            mMap = method.getAnnotation(Mapping.class);
-            mIndex = 0;
-            mMethod = new HashSet<>();
+        for (Method method : findMethods(bw.clz())) {
+            m_map = method.getAnnotation(Mapping.class);
+            m_method = new HashSet<>();
 
-            //获取 action 的methodTypes
-            MethodTypeUtil.findAndFill(mMethod, t -> method.getAnnotation(t) != null);
+            //如果没有注解，则只允许 public
+            if (m_map == null) {
+                if (Modifier.isPublic(method.getModifiers()) == false) {
+                    continue;
+                }
+            }
+
+            //获取 action 的 methodTypes
+            MethodTypeUtil.findAndFill(m_method, t -> method.getAnnotation(t) != null);
 
             //构建path and method
-            if (mMap != null) {
-                mPath = Utils.annoAlias(mMap.value(), mMap.path());
+            if (m_map != null) {
+                m_path = Utils.annoAlias(m_map.value(), m_map.path());
 
-                if (mMethod.size() == 0) {
+                if (m_method.size() == 0) {
                     //如果没有找到，则用Mapping上自带的
-                    mMethod.addAll(Arrays.asList(mMap.method()));
+                    m_method.addAll(Arrays.asList(m_map.method()));
                 }
-                mIndex = mMap.index();
             } else {
-                mPath = method.getName();
+                m_path = method.getName();
 
-                if (mMethod.size() == 0) {
-                    //获取 controller 的methodTypes
-                    MethodTypeUtil.findAndFill(mMethod, t -> bw.clz().getAnnotation(t) != null);
+                if (m_method.size() == 0) {
+                    //获取 controller 的 methodTypes
+                    MethodTypeUtil.findAndFill(m_method, t -> bw.clz().getAnnotation(t) != null);
                 }
 
-                if (mMethod.size() == 0) {
-                    //如果没有找到，则用Mapping上自带的；或默认POST
+                if (m_method.size() == 0) {
+                    //如果没有找到，则用Mapping上自带的；或默认
                     if (bMapping == null) {
-                        mMethod.add(MethodType.POST);
+                        m_method.add(MethodType.HTTP);
                     } else {
-                        mMethod.addAll(Arrays.asList(bMapping.method()));
+                        m_method.addAll(Arrays.asList(bMapping.method()));
                     }
                 }
             }
 
             //如果是service，method 就不需要map
-            if (mMap != null || all) {
-                String newPath = PathUtil.mergePath(bPath, mPath);
+            if (m_map != null || all) {
+                String newPath = PathUtil.mergePath(bPath, m_path);
 
-                Action action = createAction(bw, method, mMap, newPath, bRemoting);
+                Action action = createAction(bw, method, m_map, newPath, bRemoting);
 
                 //m_method 必须之前已准备好，不再动  //用于支持 Cors
-                loadActionAide(method, action, mMethod);
-                if (bMethod.size() > 0 &&
-                        mMethod.contains(MethodType.HTTP) == false &&
-                        mMethod.contains(MethodType.ALL) == false) {
+                loadActionAide(method, action, m_method);
+                if (b_method.size() > 0 &&
+                        m_method.contains(MethodType.HTTP) == false &&
+                        m_method.contains(MethodType.ALL) == false) {
                     //用于支持 Cors
-                    mMethod.addAll(bMethod);
+                    m_method.addAll(b_method);
                 }
 
-                for (MethodType m1 : mMethod) {
-                    if (mMap == null) {
+                for (MethodType m1 : m_method) {
+                    if (m_map == null) {
                         slots.add(newPath, m1, action);
                     } else {
-                        if ((mMap.after() || mMap.before())) {
-                            if (mMap.after()) {
-                                slots.after(newPath, m1, mIndex, action);
-                            } else {
-                                slots.before(newPath, m1, mIndex, action);
-                            }
-                        } else {
-                            slots.add(newPath, m1, action);
-                        }
+                        slots.add(newPath, m1, action);
                     }
                 }
             }
         }
     }
+
 
 
     protected void loadControllerAide(Set<MethodType> methodSet) {

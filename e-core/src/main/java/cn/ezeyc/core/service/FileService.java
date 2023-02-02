@@ -35,9 +35,9 @@ public class FileService {
 
     public String upload(UploadedFile file,Boolean view) throws IOException {
         String date= LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        String name = CloudClient.id().generate()+Util.getFileType(file.name);
+        String name = CloudClient.id().generate()+Util.getFileType(file.getName());
         if(type.equals(Const.qiniu)){
-            Result put = CloudClient.file().put(name, new Media(file.content));
+            Result put = CloudClient.file().put(name, new Media(file.getContent()));
 
         } else if (type.equals(Const.local)) {
             //判断日期目录是否存在
@@ -64,7 +64,7 @@ public class FileService {
 
     public void down(Context ctx, String path) {
         if(type.equals(Const.qiniu)){
-            byte[] bytes = CloudClient.file().get(path).bodyAsByts();
+            byte[] bytes = CloudClient.file().get(path).bodyAsBytes();
             try {
                 ctx.outputStream().write(bytes);
             } catch (IOException e) {

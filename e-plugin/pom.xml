@@ -5,12 +5,12 @@
     <parent>
         <groupId>cn.ezeyc</groupId>
         <artifactId>e-base</artifactId>
-        <version>1.2</version>
+        <version>1.3</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>cn.ezeyc</groupId>
     <artifactId>e-plugin</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
     <name>e-plugin</name>
     <description>e-plugin</description>
     <packaging>pom</packaging>

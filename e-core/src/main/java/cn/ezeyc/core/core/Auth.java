@@ -4,13 +4,12 @@ import cn.dev33.satoken.context.SaHolder;
 import cn.dev33.satoken.router.SaHttpMethod;
 import cn.dev33.satoken.router.SaRouter;
 import cn.dev33.satoken.same.SaSameUtil;
-import cn.dev33.satoken.solon.integration.SaTokenPathInterceptor;
+import cn.dev33.satoken.solon.integration.SaTokenInterceptor;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.ezeyc.core.config.Const;
 import cn.ezeyc.core.enums.ResultEnum;
 import cn.ezeyc.core.pojo.ResultBody;
 import lombok.extern.slf4j.Slf4j;
-import org.noear.solon.Solon;
 import org.noear.solon.annotation.Bean;
 import org.noear.solon.annotation.Configuration;
 import org.noear.solon.annotation.Inject;
@@ -38,10 +37,11 @@ public class Auth {
     private  Boolean  sso=false;
     /**
      * 注册 [sa-token全局过滤器]
+     *
+     * @return
      */
     @Bean
-    public void tokenPathInterceptor() {
-        //[放行路由]
+    public SaTokenInterceptor tokenPathInterceptor() {
         List<String> strings =new ArrayList<>();
         if(ignore!=null){
             strings = Stream.of(ignore.split(Const.dou)).collect(Collectors.toList());
@@ -52,7 +52,7 @@ public class Auth {
             strings.add("/file/**");
             strings.add("/healthz");
         }
-        Solon.app().before(new SaTokenPathInterceptor()
+        return new SaTokenInterceptor()
                 // 指定 [拦截路由] 与 [放行路由]
                 .addInclude("/**")
                 .setExcludeList(strings)
@@ -72,6 +72,7 @@ public class Auth {
                     //登录验证
                     SaRouter.match("/**", StpUtil::checkLogin);
                 })
+
                 // 异常处理函数：每次认证函数发生异常时执行此函数 //包括注解异常
                 .setError(e -> {
                     return ResultBody.failed(ResultEnum.error).setMessage(e.getMessage());
@@ -99,6 +100,7 @@ public class Auth {
                     SaRouter.match(SaHttpMethod.OPTIONS)
                             .free(r -> System.out.println("--------OPTIONS预检请求，不做处理"))
                             .back();
-                }));
+                      });
+
     }
 }
