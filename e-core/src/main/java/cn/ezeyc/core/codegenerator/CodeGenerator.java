@@ -161,7 +161,7 @@ public class CodeGenerator {
             //转换字段名称，如 sys_name 变成 SysName
             columnClass.setChangeColumnName(Util.lineToHump(resultSet.getString("COLUMN_NAME")));
             //字段在数据库的注释
-            columnClass.setColumnComment(resultSet.getString("REMARKS"));
+            columnClass.setColumnComment(resultSet.getString("REMARKS")==null?"暂无":resultSet.getString("REMARKS"));
             columnClassList.add(columnClass);
         }
         Map<String,Object> dataMap = new HashMap<>(11);

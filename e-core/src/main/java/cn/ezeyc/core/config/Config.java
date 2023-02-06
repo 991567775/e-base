@@ -51,17 +51,22 @@ public class Config {
     @Inject(value = "${mybatis.db.showSql}",required = false)
     private boolean showSql=true;
 
-
+    @Inject(value = "${e.db.default}",required = false)
+    private boolean mysql=true;
     /**
      * 导入数据源
      * @param ds 数据源
      * @return 返回
      */
-    @Bean(value = "db")
-    public DataSource db(@VaultInject("${e.db}") HikariDataSource ds) {
-        ds.setMaxLifetime(120000);
-        return ds;
-    }
+//    @Bean(value = "db")
+//    public DataSource db(@VaultInject("${e.db}") HikariDataSource ds) {
+//        if(mysql){
+//            ds.setMaxLifetime(120000);
+//            return ds;
+//        }else {
+//            return null;
+//        }
+//    }
 
 
 

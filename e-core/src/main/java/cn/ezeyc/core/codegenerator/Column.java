@@ -14,7 +14,7 @@ public class Column {
     /** 数据库字段首字母小写且去掉下划线字符串 **/
     private String changeColumnName;
     /** 数据库字段注释 **/
-    private String columnComment;
+    private String columnComment="default";
 
     public String getColumnComment() {
         return columnComment;

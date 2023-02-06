@@ -75,6 +75,9 @@ public class CodeCreate {
 
     public String getRootPath() {
         if(StringUtils.isNotEmpty(rootPath)){
+            if("".equals(artifactId)){
+                return  Const.outJavaWithRootPath(rootPath,artifactId.replace(".","/")) + Const.slanting+ Util.rmLine(artifactId.replace(".","/"))+ Const.slanting;
+            }
             return  Const.outJavaWithRootPath(rootPath,artifactId.replace(".","/")) + Const.slanting+groupId.replace(".","/")+ Const.slanting+ Util.rmLine(artifactId.replace(".","/"))+ Const.slanting;
         }
         return Const.outJavaPath(artifactId.replace(".","/")) + Const.slanting+groupId.replace(".","/")+ Const.slanting+ Util.rmLine(artifactId.replace(".","/"))+ Const.slanting;
