@@ -92,6 +92,8 @@ public class Config {
             interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.ORACLE_12C));
         }else if("sqlserver".equals(platform)){
             interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.SQL_SERVER));
+        }else if("sqlserver2005".equals(platform)){
+            interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.SQL_SERVER2005));
         }else if("dm".equals(platform)){
             interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.DM));
         }
