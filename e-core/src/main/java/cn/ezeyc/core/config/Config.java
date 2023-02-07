@@ -51,22 +51,22 @@ public class Config {
     @Inject(value = "${mybatis.db.showSql}",required = false)
     private boolean showSql=true;
 
-    @Inject(value = "${e.db.default}",required = false)
-    private boolean mysql=true;
+    @Inject(value = "${e.db.platform}",required = false)
+    private String platform="mariadb";
     /**
      * 导入数据源
      * @param ds 数据源
      * @return 返回
      */
-//    @Bean(value = "db")
-//    public DataSource db(@VaultInject("${e.db}") HikariDataSource ds) {
-//        if(mysql){
-//            ds.setMaxLifetime(120000);
-//            return ds;
-//        }else {
-//            return null;
-//        }
-//    }
+    @Bean(value = "db")
+    public DataSource db(@VaultInject("${e.db}") HikariDataSource ds) {
+        if("mariadb".equals(platform)){
+            ds.setMaxLifetime(120000);
+            return ds;
+        }else {
+            return null;
+        }
+    }
 
 
 
@@ -79,11 +79,22 @@ public class Config {
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor(@Db("db") MybatisConfiguration cfg,@Db("db") GlobalConfig config) {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-
         // 自定义拦截器，先添加先执行。
         interceptor.addInnerInterceptor(new Interceptor(showSql));
         // 自带分页拦截器
-        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+        if("mariadb".equals(platform)){
+            interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MARIADB));
+        }else if("mysql".equals(platform)){
+            interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+        }else if("oracle".equals(platform)){
+            interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.ORACLE));
+        }else if("oracle12c".equals(platform)){
+            interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.ORACLE_12C));
+        }else if("sqlserver".equals(platform)){
+            interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.SQL_SERVER));
+        }else if("dm".equals(platform)){
+            interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.DM));
+        }
         //自定义转换器
         cfg.getTypeHandlerRegistry().register(StringArrayTypeHandler.class.getPackage().getName());
         //枚举类型

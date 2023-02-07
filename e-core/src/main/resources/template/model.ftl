@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import cn.ezeyc.core.pojo.mybatis.ModelBase;
 import lombok.Getter;
 import lombok.Setter;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.math.BigDecimal;
 
 /**
@@ -38,19 +38,19 @@ public class ${tableName} extends ModelBase {
     /**
     *${model.columnComment}
      */
-    private  LocalDateTime ${model.changeColumnName};
+    private  Timestamp ${model.changeColumnName};
     </#if>
     <#if model.columnType = 'date'||model.columnType = 'DATE'>
     /**
     *${model.columnComment}
     */
-    private  LocalDate ${model.changeColumnName};
+    private  Date ${model.changeColumnName};
     </#if>
     <#if model.columnType = 'time'||model.columnType = 'TIME'>
     /**
     *${model.columnComment}
     */
-    private  LocalTime ${model.changeColumnName};
+    private  Time ${model.changeColumnName};
     </#if>
     <#if model.columnType = 'bigint'||model.columnType = 'BIGINT' >
     /**
@@ -70,7 +70,7 @@ public class ${tableName} extends ModelBase {
     */
     private Integer ${model.changeColumnName};
     </#if>
-    <#if model.columnType = 'tinyint'||model.columnType = 'TINYINT' >
+    <#if model.columnType = 'tinyint'||model.columnType = 'TINYINT'  >
     /**
     *${model.columnComment}
     */

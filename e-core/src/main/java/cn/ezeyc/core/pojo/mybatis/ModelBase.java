@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.Arrays;
 
 /**
@@ -37,7 +37,7 @@ public class ModelBase  implements Serializable {
      *创建时间
      */
     @TableField(value = "create_date",fill = FieldFill.INSERT)
-    private  LocalDateTime createDate;
+    private Timestamp createDate;
     /**
      *更新人
      */
@@ -48,7 +48,7 @@ public class ModelBase  implements Serializable {
      *更新时间
      */
     @TableField(value = "update_date",fill = FieldFill.UPDATE)
-    private  LocalDateTime updateDate;
+    private Timestamp updateDate;
     /**
      *是否删除
      */
@@ -63,12 +63,12 @@ public class ModelBase  implements Serializable {
      *分页每页数
      */
     @TableField(exist = false)
-    private Integer pageSize=10;
+    private Long pageSize=10L;
     /**
      * 第几页
      */
     @TableField(exist = false)
-    private Integer pageNo=1;
+    private Long pageNo=1L;
     @Override
     public String toString() {
         return "ModelBase{" +
